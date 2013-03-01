@@ -10,26 +10,26 @@ jump_to_action = ''
 class SublimatedSymfonyViewCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         global jump_to_action
-        opened_file = self.view.file_name()
-        reg_controller = re.compile(r'(.+)[/\\](.+)Controller.php')
-        reg_twig = re.compile(r'(.+)[/\\](.+)[/\\](.+).html.twig')
-        file_is_symfony_controller = reg_controller.search(opened_file)
-        if file_is_symfony_controller:
-            folder = file_is_symfony_controller.group(1)
-            controller_name = file_is_symfony_controller.group(2)
+        self.is_controller = False
+        self.is_twig = False
+        self.reg_exp = None
+        self.file = self.view.file_name()
+
+        self.file_is(self.file)
+        if self.is_controller:
+            folder = self.reg_exp.group(1)
+            controller_name = self.reg_exp.group(2)
             action = self.get_current_function(self.view)
             if action:
                 action_name = re.search('(\w+)Action', action).group(1)
                 template_file = self.search_for_template(folder, controller_name, action_name)
                 if not os.path.exists(template_file):
-                    f = open(template_file, 'w')
-                    f.close
+                    self.create_template_file(folder, controller_name, action_name)
                 self.view.window().open_file(template_file)
-        elif reg_twig.search(opened_file):
-            file_match = reg_twig.search(opened_file)
-            folder = file_match.group(1)
-            controller = file_match.group(2)
-            action = file_match.group(3)
+        elif self.is_twig:
+            folder = self.reg_exp.group(1)
+            controller = self.reg_exp.group(2)
+            action = self.reg_exp.group(3)
             controller_file = self.search_for_controller(folder, controller)
             self.view.window().open_file(controller_file)
             jump_to_action = action
@@ -45,6 +45,22 @@ class SublimatedSymfonyViewCommand(sublime_plugin.TextCommand):
                 cf = view.substr(r)
                 break
         return cf
+
+    def file_is(self, file_name):
+        if re.search(r'(.+)[/\\](.+)Controller.php', file_name):
+            self.is_controller = True
+            self.reg_exp = re.search(r'(.+)[/\\](.+)Controller.php', file_name)
+        elif re.search(r'(.+)[/\\](.+)[/\\](.+).html.twig', file_name):
+            self.is_twig = True
+            self.reg_exp = re.search(r'(.+)[/\\](.+)[/\\](.+).html.twig', file_name)
+
+    def create_template_file(self, folder, controller_name, action):
+        views_folder = folder + os.sep + '..' + os.sep + 'Resources' + os.sep + 'views' + os.sep + controller_name
+        if not os.path.exists(views_folder):
+            os.makedirs(views_folder)
+        file_path = views_folder + os.sep + action + '.html.twig'
+        f = open(file_path, 'w')
+        f.close
 
     def search_for_template(self, folder, controller_name, action):
         bundle_folder = folder + os.sep + '..' + os.sep
