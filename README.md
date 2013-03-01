@@ -6,5 +6,5 @@ two things — open template file from Action (or creating file and go to it) or
 open Controller on selected Action from template file
 
 TODO:
-- [ ] autocomplete `use`
-- [ ] working with symfony commands
+autocomplete `use`
+working with symfony commands
