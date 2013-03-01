@@ -6,5 +6,6 @@ two things — open template file from Action (or creating file and go to it) or
 open Controller on selected Action from template file
 
 TODO:
+* creating Resource/view/Controller folder if need
 * autocomplete `use`
 * working with symfony commands
