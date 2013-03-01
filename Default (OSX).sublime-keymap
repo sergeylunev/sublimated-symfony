@@ -1,0 +1,5 @@
+[  
+    {  
+        "keys": ["ctrl+super+w"], "command": "sublimated_symfony_view"  
+    }  
+]  
