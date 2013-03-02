@@ -1,5 +1,5 @@
 [  
     {  
-        "keys": ["ctrl+alt+e"], "command": "sublimated_symfony_view"  
+        "keys": ["ctrl+alt+p"], "command": "sublimated_symfony_view"  
     }  
 ]  
