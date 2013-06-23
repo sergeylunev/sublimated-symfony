@@ -14,4 +14,6 @@ defenition (`new FooBar()`)
 
 TODO:
 - insert `namespace` related to the file
+- add some screencasts to illustrate how it works
+- jump between entity and repository classes
 - working with symfony commands
