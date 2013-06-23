@@ -13,6 +13,5 @@ If pressed in template file — open Controller on Action file related to this t
 defenition (`new FooBar()`)
 
 TODO:
-- [x] autocomplete `use`
-- [ ] insert `namespace` related to the file
-- [ ] working with symfony commands
+- insert `namespace` related to the file
+- working with symfony commands
