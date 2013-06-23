@@ -7,19 +7,13 @@ import os
 
 jump_to_action = ''
 
-def normalize_to_system_style_path(path):
-    if sublime.platform() == "windows":
-        path = re.sub(r"/([A-Za-z])/(.+)", r"\1:/\2", path)
-        path = re.sub(r"/", r"\\", path)
-    return path
-
 def find_symbol(symbol, window):
     files = window.lookup_symbol_in_index(symbol)
     namespaces = []
     pattern = re.compile(b'^\s*namespace\s+([^;]+);', re.MULTILINE)
 
     for file in files:
-        with open(normalize_to_system_style_path(file[0]), "rb") as f:
+        with open(file[0], "rb") as f:
             with contextlib.closing(mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ)) as m:
                 for match in re.findall(pattern, m):
                     namespaces.append([match.decode('utf-8') + "\\" + symbol, file[1]])
@@ -95,8 +89,6 @@ class SublimatedSymfonyViewCommand(sublime_plugin.TextCommand):
 
 class ImportUseCommand(sublime_plugin.TextCommand):
     def run(self, edit, namespace):
-        print(namespace);
-
         view = self.view
         use_stmt = "use " + namespace + ";"
 
@@ -104,31 +96,26 @@ class ImportUseCommand(sublime_plugin.TextCommand):
         if not region.empty():
             return sublime.status_message('Use already exist !')
 
-        uses = []
-        regions = view.find_all(r"^(use\s+.+[;])", 0, '$1', uses)
-        uses.append(use_stmt)
-        uses = list(set(uses))
-        uses.sort()
-        uses = "\n".join(uses)
+        regions = view.find_all(r"^(use\s+.+[;])")
+        use_stmt = "\n" + use_stmt
 
         if len(regions) > 0:
             region = regions[0]
             for r in regions:
                 region = region.cover(r)
-
-            view.replace(edit, region, uses)
+            view.insert(edit, region.end(), use_stmt)
             return sublime.status_message('Successfully imported' + namespace)
 
         region = view.find(r"^\s*namespace\s+[\w\\]+[;{]", 0)
         if not region.empty():
             line = view.line(region)
-            view.insert(edit, line.end(), "\n" + uses)
+            view.insert(edit, line.end(), use_stmt)
             return sublime.status_message('Successfully imported' + namespace)
 
         region = view.find(r"<\?php", 0)
         if not region.empty():
             line = view.line(region)
-            view.insert(edit, line.end(), "\n" + uses)
+            view.insert(edit, line.end(), use_stmt)
             return sublime.status_message('Successfully imported' + namespace)
 
 class FindUseCommand(sublime_plugin.TextCommand):
