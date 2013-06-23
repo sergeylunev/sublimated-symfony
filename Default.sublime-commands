@@ -2,5 +2,9 @@
     {
         "caption": "Symfony2: go to view/action",
         "command": "sublimated_symfony_view"
+    },
+    {
+        "caption": "Symfony2: find use",
+        "command": "find_use"
     }
 ]
