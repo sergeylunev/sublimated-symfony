@@ -17,4 +17,5 @@ TODO:
 - add some screencasts to illustrate how it works
 - jump between entity and repository classes
 - working with symfony commands
+- jump from inline in twig template to another template or to action/controller
 
