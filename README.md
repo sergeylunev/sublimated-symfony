@@ -19,4 +19,6 @@ TODO:
 - working with symfony commands
 - jump from inline in twig template to another template or to action/controller
 - jump to twig file if we have named in annotation
+- add commands execution from ST
+- working with routes and other stuff
 
