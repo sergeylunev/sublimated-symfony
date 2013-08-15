@@ -21,4 +21,5 @@ TODO:
 - jump to twig file if we have named in annotation
 - add commands execution from ST
 - working with routes and other stuff
+- try add GoTo by route, actions, entity, repository and other
 
