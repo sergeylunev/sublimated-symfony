@@ -22,4 +22,5 @@ TODO:
 - add commands execution from ST
 - working with routes and other stuff
 - try add GoTo by route, actions, entity, repository and other
+- workign with generators from editor
 
