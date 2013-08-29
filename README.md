@@ -2,21 +2,31 @@
 
 Sublime Text 3 (not realy support ST2) package for better Symfony 2 usage.
 
-## Templates
+## Instalation
+
+### Manual installation
+
+```sh
+git clone git@github.com:sergeylunev/sublimated-symfony.git \
+    ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/sublimated-symfony
+```
+
+## Usage
+
+### Templates
 
 `ctrl+alt+p` — if pressed in Action opens template file (or create file and open it).
 If pressed in template file — open Controller on Action file related to this template
 
-## `use` statements
+### `use` statements
 
 `ctrl+alt+u` — automaticaly add `use` statement when cursor placed on some object 
 defenition (`new FooBar()`)
 
-## Importing `namespace` related to file
+### Importing `namespace` related to file
 
 `ctrl+alt+n` — automaticaly add `namespace` statement related to file (please look
 for [PSR-0][1] for better understanding)
-
 
 TODO:
 - add some screencasts to illustrate how it works
