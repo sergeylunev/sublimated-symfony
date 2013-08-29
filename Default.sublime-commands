@@ -4,7 +4,11 @@
         "command": "sublimated_symfony_view"
     },
     {
-        "caption": "Symfony2: find use",
+        "caption": "Symfony2: import use",
         "command": "find_use"
+    },
+    {
+        "caption": "Symfony2: import namespace related to file",
+        "command": "import_namespace"
     }
 ]
