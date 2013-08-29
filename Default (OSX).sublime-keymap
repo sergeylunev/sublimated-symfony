@@ -4,5 +4,8 @@
     },
     {
         "keys": ["ctrl+alt+u"], "command": "find_use"
+    },
+    {
+        "keys": ["ctrl+alt+n"], "command": "import_namespace"
     }
 ]  

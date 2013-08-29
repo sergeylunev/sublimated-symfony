@@ -10,6 +10,7 @@ jump_to_action = ''
 from .sublimated_symfony.commands.action2view_command import SublimatedSymfonyViewCommand
 from .sublimated_symfony.commands.finduse_command import FindUseCommand
 from .sublimated_symfony.commands.importuse_command import ImportUseCommand
+from .sublimated_symfony.commands.importnamespace_command import ImportNamespaceCommand
 
 class SymfonyEvent(sublime_plugin.EventListener):
     def on_load(self, view):
