@@ -1,6 +1,6 @@
 [  
     {  
-        "keys": ["ctrl+alt+p"], "command": "sublimated_symfony_view",
+        "keys": ["ctrl+alt+v"], "command": "sublimated_symfony_view",
     },
     {
         "keys": ["ctrl+alt+u"], "command": "find_use"

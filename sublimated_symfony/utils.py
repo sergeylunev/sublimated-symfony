@@ -26,7 +26,7 @@ def find_symbol(symbol, window):
     namespaces = []
     pattern = re.compile(b'^\s*namespace\s+([^;]+);', re.MULTILINE)
     def filter_file(file):
-        for pattern in setting('exclude_dir'):
+        for pattern in get_setting('exclude_dir'):
             pattern = re.compile(pattern)
             if pattern.match(file[1]):
                 return False
