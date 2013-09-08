@@ -4,6 +4,10 @@
         "command": "sublimated_symfony_view"
     },
     {
+        "caption": "Symfony2: go to entity/repository",
+        "command": "entity_to_repository"
+    },
+    {
         "caption": "Symfony2: import use",
         "command": "find_use"
     },

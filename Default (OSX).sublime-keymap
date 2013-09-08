@@ -1,6 +1,9 @@
 [  
     {  
-        "keys": ["ctrl+alt+v"], "command": "sublimated_symfony_view",
+        "keys": ["ctrl+alt+v"], "command": "sublimated_symfony_view"
+    },
+    {  
+        "keys": ["ctrl+alt+r"], "command": "entity_to_repository"
     },
     {
         "keys": ["ctrl+alt+u"], "command": "find_use"
