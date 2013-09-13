@@ -38,6 +38,7 @@ TODO:
 - working with routes and other stuff
 - try add GoTo by route, actions, entity, repository and other
 - workign with generators from editor
+- go to template file from twig render or include
 
 Complete:
 - insert `namespace` related to the file
