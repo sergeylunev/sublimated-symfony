@@ -9,6 +9,6 @@
         "keys": ["ctrl+alt+n"], "command": "import_namespace"
     },
     {  
-        "keys": ["ctrl+alt+e"], "command": "entity_to_repository"
+        "keys": ["ctrl+alt+g"], "command": "entity_to_repository"
     }
 ]  
