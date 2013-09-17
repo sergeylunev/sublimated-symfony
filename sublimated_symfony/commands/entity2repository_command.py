@@ -28,7 +28,16 @@ class EntityToRepositoryCommand(sublime_plugin.TextCommand):
                 else:
                     sublime.status_message('There is no Repository Class for Entity.')
         elif self.is_repository:
-            print("Repository")
+            self.posible_files = find_symbol(
+                self.get_entity_class_name(self.reg_search_file_name.group(5)),
+                self.view.window()
+            )
+            if len(self.posible_files) == 1:
+                self.go_to_file(self.posible_files[0][1])
+            if len(self.posible_files) > 1:
+                view.window().show_quick_panel(self.posible_files, self.on_done)
+        else:
+            sublime.status_message("This file is not Entity or Repository file")
 
     def file_is(self, file_name):
         self.reg_search_file_name = re.search(r'^(.*)(\/)(Entity)(\/)(.*)$', file_name)
@@ -39,3 +48,17 @@ class EntityToRepositoryCommand(sublime_plugin.TextCommand):
             # If we are in Entity class
             else:
                 self.is_entity = True
+
+    def get_entity_class_name(self, str):
+        str = str.replace("Repository", "")
+        str = str.replace("php", "")
+        return re.sub("[\W\d]", "", str.strip())
+
+    def on_done(self, index):
+        if index == -1:
+            return
+        self.go_to_file(self.posible_files[index][1])
+
+    def go_to_file(self, file_path):
+        project_path = self.view.window().project_data()['folders'][0]['path']
+        self.view.window().open_file(project_path + '/' + file_path)
